@@ -6,8 +6,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import br.edu.ifsp.scl.ads.prdm.sc3033945.imfitplus.R
+import br.edu.ifsp.scl.ads.prdm.sc3033945.imfitplus.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+    private val amb: ActivityMainBinding by lazy {
+        ActivityMainBinding.inflate(layoutInflater)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
