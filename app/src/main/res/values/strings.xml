@@ -4,5 +4,7 @@
     <string name="button_init_label">Comece aqui</string>
     <string name="personal_data">Dados Pessoais</string>
     <string name="name">Nome:</string>
-    <string name="name_placeholder">Digite seu nome</string>
+    <string name="name_placeholder">Informe seu nome</string>
+    <string name="age">Idade:</string>
+    <string name="age_placeholder">Informe sua idade</string>
 </resources>
