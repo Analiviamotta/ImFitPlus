@@ -12,7 +12,6 @@
 
         android:padding="16dp"
         android:textSize="25sp"
-        android:textColor="@color/rose"
         android:textAlignment="textStart"
 
 
@@ -33,7 +32,26 @@
         android:layout_height="wrap_content"
 
         android:paddingHorizontal="16dp"
+        android:paddingBottom="4dp"
 
         app:layout_constraintTop_toBottomOf="@id/title_header" />
+
+
+    <EditText
+        android:id="@+id/nameEt"
+        android:autofillHints="name"
+        android:inputType="text"
+        android:labelFor="@id/nameTv"
+
+        android:textColor="@color/black"
+        android:background="@android:drawable/edit_text"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/name_placeholder"
+        android:layout_marginHorizontal="16dp"
+
+        app:layout_constraintTop_toBottomOf="@id/nameTv" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
