@@ -1,5 +1,6 @@
 package br.edu.ifsp.scl.ads.prdm.sc3033945.imfitplus.ui
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import br.edu.ifsp.scl.ads.prdm.sc3033945.imfitplus.databinding.ActivityImcResultBinding
@@ -16,6 +17,12 @@ class ImcResultActivity : AppCompatActivity() {
 
         air.backBt.setOnClickListener {
             finish()
+        }
+
+        air.calculateCalorieExpenditureBt.setOnClickListener {
+            Intent(this, DailyCaloriesActivity::class.java).let {
+                startActivity(it)
+            }
         }
 
     }
