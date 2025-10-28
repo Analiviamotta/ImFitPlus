@@ -1,5 +1,6 @@
 package br.edu.ifsp.scl.ads.prdm.sc3033945.imfitplus.ui
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import br.edu.ifsp.scl.ads.prdm.sc3033945.imfitplus.databinding.ActivityPersonalDataFormBinding
@@ -13,5 +14,11 @@ class PersonalDataFormActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         setContentView(apdfb.root)
+
+        apdfb.calculateIMCBt.setOnClickListener {
+            Intent(this, ImcResultActivity::class.java).let {
+                startActivity(it)
+            }
+        }
     }
 }
