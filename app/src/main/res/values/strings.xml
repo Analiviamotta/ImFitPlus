@@ -15,4 +15,5 @@
     <string name="weight">Peso:</string>
     <string name="weight_placeholder">Informe seu peso</string>
     <string name="physical_activity_level">Selecione o seu nivel de atidade fisica</string>
+    <string name="calculate_imc_button_label">Visualizar meu IMC</string>
 </resources>
