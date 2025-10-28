@@ -38,7 +38,7 @@
 
         <TextView
             android:id="@+id/nameTv"
-            android:text="@string/initialize_name"
+            android:text="@string/name_format"
 
             android:padding="16dp"
             android:textSize="20sp"
@@ -52,7 +52,7 @@
         <TextView
             android:id="@+id/imcResultTv"
 
-            android:text="Seu imc e IMC"
+            android:text="@string/imc_result_format"
 
             android:textColor="@color/rose"
             android:fontFamily="sans-serif-black"
@@ -67,7 +67,7 @@
         <TextView
             android:id="@+id/categoryTv"
 
-            android:text="Voce se enquadra na categoria CATEGORIA"
+            android:text="@string/category_format"
 
             android:fontFamily="sans-serif-condensed"
 
@@ -98,7 +98,7 @@
         <Button
             android:id="@+id/backBt"
 
-            android:text="Voltar"
+            android:text="@string/back"
 
             android:textSize="14sp"
             android:fontFamily="sans-serif-black"
@@ -115,7 +115,7 @@
         <Button
             android:id="@+id/calculateCalorieExpenditureBt"
 
-            android:text="Calcular gasto calorico"
+            android:text="@string/calculate_calorie_expenditure"
 
             android:textSize="14sp"
             android:fontFamily="sans-serif-black"

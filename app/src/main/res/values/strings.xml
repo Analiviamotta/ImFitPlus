@@ -17,5 +17,9 @@
     <string name="physical_activity_level">Selecione o seu nivel de atidade fisica</string>
     <string name="calculate_imc_button_label">Visualizar meu IMC</string>
     <string name="imc_result">Resultado do IMC</string>
-    <string name="initialize_name">Ola name</string>
+    <string name="name_format">Oii %s</string>
+    <string name="imc_result_format">Seu IMC é %s</string>
+    <string name="category_format">Você se enquadra na categoria %s</string>
+    <string name="back">Voltar</string>
+    <string name="calculate_calorie_expenditure">Calcular gasto calórico</string>
 </resources>

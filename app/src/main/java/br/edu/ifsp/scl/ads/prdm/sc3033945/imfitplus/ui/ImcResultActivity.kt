@@ -14,5 +14,9 @@ class ImcResultActivity : AppCompatActivity() {
 
         setContentView(air.root)
 
+        air.backBt.setOnClickListener {
+            finish()
+        }
+
     }
 }
