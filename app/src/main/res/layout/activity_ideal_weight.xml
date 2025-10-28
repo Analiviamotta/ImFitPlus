@@ -6,5 +6,102 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.IdealWeightActivity">
+    <TextView
+        android:id="@+id/header_title"
+
+        android:text="@string/ideal_weight"
+
+        android:textSize="25sp"
+        android:textColor="@color/rose"
+        android:fontFamily="sans-serif-black"
+        android:textAlignment="textStart"
+
+        android:padding="16dp"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/textLL"
+        android:orientation="vertical"
+
+        android:gravity="center"
+
+        android:layout_height="0dp"
+        android:layout_width="match_parent"
+
+        app:layout_constraintTop_toBottomOf="@+id/header_title"
+        app:layout_constraintBottom_toTopOf="@+id/buttonLL"
+        >
+
+
+        <TextView
+            android:id="@+id/idealWeightResultTv"
+
+            android:text="@string/ideal_weight_result_format"
+
+            android:textColor="@color/rose"
+            android:fontFamily="sans-serif-black"
+
+            android:padding="16dp"
+            android:textSize="25sp"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center" />
+
+        <TextView
+            android:id="@+id/diffWeightResultTv"
+
+            android:text="@string/diff_weight_result_format"
+
+
+            android:fontFamily="sans-serif-condensed"
+
+            android:padding="16dp"
+            android:textSize="25sp"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/buttonLL"
+
+        android:orientation="horizontal"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="16dp"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+
+
+        <Button
+            android:id="@+id/finishBt"
+
+            android:text="@string/finish"
+
+            android:textSize="14sp"
+            android:fontFamily="sans-serif-black"
+
+            android:padding="20dp"
+
+            android:backgroundTint="@color/rose"
+
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

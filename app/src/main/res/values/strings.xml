@@ -24,5 +24,9 @@
     <string name="calculate_calorie_expenditure">Calcular gasto calórico</string>
     <string name="daily_calories">Gasto Diario de calorias</string>
     <string name="daily_calories_result_format">Seu gasto diario de calorias é %s</string>
+    <string name="ideal_weight_result_format">Seu peso ideal é %s</string>
+    <string name="diff_weight_result_format">A diferenca entre seu peso atual e o peso ideal é %s</string>
     <string name="calculate_ideal_weight">Calcular peso ideal</string>
+    <string name="ideal_weight">Peso ideal</string>
+    <string name="finish">Finalizar</string>
 </resources>
