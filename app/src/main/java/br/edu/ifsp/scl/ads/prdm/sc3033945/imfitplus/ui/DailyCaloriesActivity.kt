@@ -1,5 +1,6 @@
 package br.edu.ifsp.scl.ads.prdm.sc3033945.imfitplus.ui
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -17,6 +18,12 @@ class DailyCaloriesActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         setContentView(adcb.root)
+
+        adcb.calculateIdealWeightBt.setOnClickListener {
+            Intent(this, IdealWeightActivity::class.java).let {
+                startActivity(it)
+            }
+        }
 
     }
 }
