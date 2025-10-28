@@ -12,4 +12,6 @@
     <string name="male">Masculino</string>
     <string name="height">Altura:</string>
     <string name="height_placeholder">Informe sua altura</string>
+    <string name="weight">Peso:</string>
+    <string name="weight_placeholder">Informe seu peso</string>
 </resources>

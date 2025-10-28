@@ -170,5 +170,37 @@
 
         app:layout_constraintTop_toBottomOf="@id/heightTv" />
 
+    <TextView
+        android:id="@+id/weightTv"
+        android:text="@string/weight"
+
+        android:labelFor="@id/weightEt"
+
+        android:textColor="@color/black"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:paddingHorizontal="16dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="4dp"
+
+        app:layout_constraintTop_toBottomOf="@id/heightEt" />
+
+    <EditText
+        android:id="@+id/weightEt"
+        android:inputType="numberDecimal"
+
+        android:autofillHints=""
+        android:textColor="@color/black"
+        android:background="@android:drawable/edit_text"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/weight_placeholder"
+        android:layout_marginHorizontal="16dp"
+
+        app:layout_constraintTop_toBottomOf="@id/weightTv" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
