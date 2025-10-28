@@ -7,4 +7,7 @@
     <string name="name_placeholder">Informe seu nome</string>
     <string name="age">Idade:</string>
     <string name="age_placeholder">Informe sua idade</string>
+    <string name="gender">Gênero:</string>
+    <string name="female">Feminino</string>
+    <string name="male">Masculino</string>
 </resources>
