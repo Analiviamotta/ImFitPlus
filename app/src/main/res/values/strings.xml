@@ -10,4 +10,6 @@
     <string name="gender">Gênero:</string>
     <string name="female">Feminino</string>
     <string name="male">Masculino</string>
+    <string name="height">Altura:</string>
+    <string name="height_placeholder">Informe sua altura</string>
 </resources>
