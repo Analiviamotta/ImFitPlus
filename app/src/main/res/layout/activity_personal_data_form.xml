@@ -1,257 +1,252 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    android:id="@+id/main"
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-
+    android:id="@+id/main"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" tools:context=".ui.PersonalDataFormActivity">
-    <androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_height="match_parent"
+    tools:context=".ui.PersonalDataFormActivity">
+
+    <TextView
+        android:id="@+id/title_header"
+        android:text="@string/personal_data"
+
+        android:padding="16dp"
+        android:textSize="25sp"
+        android:fontFamily="sans-serif-black"
+
+        android:textAlignment="textStart"
+        android:textColor="@color/rose"
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        >
-        <TextView
-            android:id="@+id/title_header"
-            android:text="@string/personal_data"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-            android:padding="16dp"
-            android:textSize="25sp"
-            android:textAlignment="textStart"
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
 
 
+        app:layout_constraintTop_toBottomOf="@id/title_header"
+        app:layout_constraintBottom_toTopOf="@id/calculateIMCBt">
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/nameTv"
+                android:text="@string/name"
+                android:labelFor="@id/nameEt"
 
+                android:textColor="@color/black"
 
-        <TextView
-            android:id="@+id/nameTv"
-            android:text="@string/name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
 
-            android:textColor="@color/black"
+                android:paddingHorizontal="16dp"
+                android:paddingBottom="4dp" />
 
-            android:labelFor="@id/nameEt"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            <EditText
+                android:id="@+id/nameEt"
+                android:inputType="text"
+                android:autofillHints="name"
+                android:hint="@string/name_placeholder"
 
-            android:paddingHorizontal="16dp"
-            android:paddingBottom="4dp"
+                android:textColor="@color/black"
 
-            app:layout_constraintTop_toBottomOf="@id/title_header" />
+                android:background="@android:drawable/edit_text"
 
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp" />
 
-        <EditText
-            android:id="@+id/nameEt"
-            android:autofillHints="name"
-            android:inputType="text"
+            <TextView
+                android:id="@+id/ageTv"
+                android:text="@string/age"
+                android:labelFor="@id/ageEt"
 
-            android:textColor="@color/black"
-            android:background="@android:drawable/edit_text"
+                android:textColor="@color/black"
 
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/name_placeholder"
-            android:layout_marginHorizontal="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
 
-            app:layout_constraintTop_toBottomOf="@id/nameTv" />
+                android:paddingHorizontal="16dp"
+                android:paddingTop="8dp"
+                android:paddingBottom="4dp" />
 
-        <TextView
-            android:id="@+id/ageTv"
-            android:text="@string/age"
-            android:labelFor="@id/ageEt"
+            <EditText
+                android:id="@+id/ageEt"
+                android:autofillHints=""
+                android:inputType="number"
+                android:hint="@string/age_placeholder"
 
-            android:textColor="@color/black"
+                android:textColor="@color/black"
 
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+                android:background="@android:drawable/edit_text"
 
-            android:paddingHorizontal="16dp"
-            android:paddingTop="8dp"
-            android:paddingBottom="4dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
 
-            app:layout_constraintTop_toBottomOf="@id/nameEt" />
+                android:layout_marginHorizontal="16dp" />
 
+            <TextView
+                android:id="@+id/genderTv"
+                android:text="@string/gender"
+                android:labelFor="@id/genderRg"
 
-        <EditText
-            android:id="@+id/ageEt"
-            android:inputType="number"
+                android:textColor="@color/black"
 
-            android:autofillHints=""
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
 
-            android:textColor="@color/black"
-            android:background="@android:drawable/edit_text"
+                android:paddingHorizontal="16dp"
+                android:paddingTop="8dp"
+                android:paddingBottom="4dp" />
 
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/age_placeholder"
-            android:layout_marginHorizontal="16dp"
+            <RadioGroup
+                android:id="@+id/genderRg"
+                android:orientation="horizontal"
 
-            app:layout_constraintTop_toBottomOf="@id/ageTv" />
+                android:paddingHorizontal="16dp"
 
-        <TextView
-            android:id="@+id/genderTv"
-            android:text="@string/gender"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-            android:labelFor="@id/genderRg"
+                <RadioButton
+                    android:id="@+id/femaleRb"
+                    android:checked="true"
+                    android:text="@string/female"
 
-            android:textColor="@color/black"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
 
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+                    app:buttonTint="@color/rose"
+                    android:buttonTint="@color/rose"
 
-            android:paddingHorizontal="16dp"
-            android:paddingTop="8dp"
-            android:paddingBottom="4dp"
+                    android:layout_height="wrap_content" />
 
-            app:layout_constraintTop_toBottomOf="@id/ageEt" />
+                <RadioButton
+                    android:id="@+id/maleRb"
+                    android:text="@string/male"
 
-        <RadioGroup
-            android:id="@+id/genderRg"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
 
-            android:orientation="horizontal"
+                    app:buttonTint="@color/rose"
+                    android:buttonTint="@color/rose"
 
-            android:paddingHorizontal="16dp"
+                    android:layout_height="wrap_content" />
+            </RadioGroup>
 
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            <TextView
+                android:id="@+id/heightTv"
+                android:labelFor="@id/heightEt"
+                android:text="@string/height"
 
-            app:layout_constraintTop_toBottomOf="@+id/genderTv">
-            <RadioButton
-                android:id="@+id/femaleRb"
-                android:text="@string/female"
+                android:textColor="@color/black"
 
-                android:checked="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
 
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:buttonTint="@color/rose"
-                app:buttonTint="@color/rose"
-                android:layout_height="wrap_content" />
+                android:paddingHorizontal="16dp"
+                android:paddingTop="8dp"
+                android:paddingBottom="4dp" />
 
-            <RadioButton
-                android:id="@+id/maleRb"
+            <EditText
+                android:id="@+id/heightEt"
+                android:inputType="numberDecimal"
+                android:hint="@string/height_placeholder"
 
-                android:text="@string/male"
+                android:autofillHints=""
+                android:textColor="@color/black"
 
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:buttonTint="@color/rose"
-                app:buttonTint="@color/rose"
-                android:layout_height="wrap_content" />
-        </RadioGroup>
+                android:background="@android:drawable/edit_text"
 
-        <TextView
-            android:id="@+id/heightTv"
-            android:text="@string/height"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
 
-            android:labelFor="@id/heightEt"
+                android:layout_marginHorizontal="16dp" />
 
-            android:textColor="@color/black"
+            <TextView
+                android:id="@+id/weightTv"
+                android:text="@string/weight"
+                android:labelFor="@id/weightEt"
 
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+                android:textColor="@color/black"
 
-            android:paddingHorizontal="16dp"
-            android:paddingTop="8dp"
-            android:paddingBottom="4dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
 
-            app:layout_constraintTop_toBottomOf="@id/genderRg" />
+                android:paddingHorizontal="16dp"
+                android:paddingTop="8dp"
+                android:paddingBottom="4dp" />
 
-        <EditText
-            android:id="@+id/heightEt"
-            android:inputType="numberDecimal"
+            <EditText
+                android:id="@+id/weightEt"
+                android:inputType="numberDecimal"
+                android:hint="@string/weight_placeholder"
 
-            android:autofillHints=""
-            android:textColor="@color/black"
-            android:background="@android:drawable/edit_text"
+                android:autofillHints=""
 
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/height_placeholder"
-            android:layout_marginHorizontal="16dp"
+                android:textColor="@color/black"
+                android:background="@android:drawable/edit_text"
 
-            app:layout_constraintTop_toBottomOf="@id/heightTv" />
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
 
-        <TextView
-            android:id="@+id/weightTv"
-            android:text="@string/weight"
+                android:layout_marginHorizontal="16dp" />
 
-            android:labelFor="@id/weightEt"
+            <TextView
+                android:id="@+id/physicalActivityLevelTv"
 
-            android:textColor="@color/black"
+                android:text="@string/physical_activity_level"
+                android:labelFor="@id/physicalActivityLevelSp"
+                android:textColor="@color/black"
 
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
 
-            android:paddingHorizontal="16dp"
-            android:paddingTop="8dp"
-            android:paddingBottom="4dp"
+                android:paddingHorizontal="16dp"
+                android:paddingTop="8dp"
+                android:paddingBottom="4dp" />
 
-            app:layout_constraintTop_toBottomOf="@id/heightEt" />
+            <Spinner
+                android:id="@+id/physicalActivityLevelSp"
+                android:entries="@array/physical_activity_levels_array"
 
-        <EditText
-            android:id="@+id/weightEt"
-            android:inputType="numberDecimal"
+                android:minHeight="48dp"
 
-            android:autofillHints=""
-            android:textColor="@color/black"
-            android:background="@android:drawable/edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
 
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/weight_placeholder"
-            android:layout_marginHorizontal="16dp"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginBottom="16dp" />
 
-            app:layout_constraintTop_toBottomOf="@id/weightTv" />
+        </LinearLayout>
+    </ScrollView>
 
+    <Button
+        android:id="@+id/calculateIMCBt"
 
-        <TextView
-            android:id="@+id/physicalActivityLevelTv"
-            android:text="@string/physical_activity_level"
+        android:textSize="16sp"
+        android:text="@string/calculate_imc_button_label"
 
-            android:labelFor="@id/physicalActivityLevelSp"
+        android:backgroundTint="@color/rose"
 
-            android:textColor="@color/black"
+        android:layout_marginVertical="8dp"
 
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:padding="20dp"
 
-            android:paddingHorizontal="16dp"
-            android:paddingTop="8dp"
-            android:paddingBottom="4dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
 
-            app:layout_constraintTop_toBottomOf="@id/weightEt" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-        <Spinner
-            android:id="@+id/physicalActivityLevelSp"
-
-            android:entries="@array/physical_activity_levels_array"
-
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/physicalActivityLevelTv"
-
-            android:paddingHorizontal="16dp"
-            android:paddingTop="8dp"
-            android:paddingBottom="4dp"
-
-            android:minHeight="48dp"
-
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-        <Button
-            android:id="@+id/calculateIMCBt"
-
-            android:text="@string/calculate_imc_button_label"
-            android:backgroundTint="@color/rose"
-            android:layout_marginHorizontal="16dp"
-            app:layout_constraintTop_toBottomOf="@+id/physicalActivityLevelSp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
