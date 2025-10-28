@@ -22,4 +22,7 @@
     <string name="category_format">Você se enquadra na categoria %s</string>
     <string name="back">Voltar</string>
     <string name="calculate_calorie_expenditure">Calcular gasto calórico</string>
+    <string name="daily_calories">Gasto Diario de calorias</string>
+    <string name="daily_calories_result_format">Seu gasto diario de calorias é %s</string>
+    <string name="calculate_ideal_weight">Calcular peso ideal</string>
 </resources>
