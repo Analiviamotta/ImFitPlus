@@ -5,7 +5,7 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class UserDTO(
-    var id: Int = -1,
+    var id: String = "",
     var age: Int = 0,
     var name: String = "",
     var height: Double = 0.0,
