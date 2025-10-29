@@ -7,6 +7,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import br.edu.ifsp.scl.ads.prdm.sc3033945.imfitplus.databinding.ActivityPersonalDataFormBinding
 import br.edu.ifsp.scl.ads.prdm.sc3033945.imfitplus.model.ActivityLevel
+import br.edu.ifsp.scl.ads.prdm.sc3033945.imfitplus.model.Constants.EXTRA_IMC
+import br.edu.ifsp.scl.ads.prdm.sc3033945.imfitplus.model.Constants.EXTRA_USER
 import br.edu.ifsp.scl.ads.prdm.sc3033945.imfitplus.model.Gender
 import br.edu.ifsp.scl.ads.prdm.sc3033945.imfitplus.model.UserDTO
 import java.util.UUID
@@ -23,20 +25,20 @@ class PersonalDataFormActivity : AppCompatActivity() {
 
         apdfb.calculateIMCBt.setOnClickListener {
 
-            var height = apdfb.heightEt.text.toString().toDoubleOrNull() ?: 0.0
-            var weight = apdfb.weightEt.text.toString().toDoubleOrNull() ?: 0.0
+            val height = apdfb.heightEt.text.toString().toDoubleOrNull() ?: 0.0
+            val weight = apdfb.weightEt.text.toString().toDoubleOrNull() ?: 0.0
 
             if(height <= 0){
                 Toast.makeText(this, "Altura invalida", Toast.LENGTH_SHORT).show()
             }else if (weight <= 0){
                 Toast.makeText(this, "Peso invalido", Toast.LENGTH_SHORT).show()
             } else {
-                var userId = UUID.randomUUID().toString()
-                var imc = weight / (height * height)
+                val userId = UUID.randomUUID().toString()
+                val imc = weight / (height * height)
 
-                var gender = if(apdfb.femaleRb.isChecked) Gender.Female else Gender.Male
+                val gender = if(apdfb.femaleRb.isChecked) Gender.Female else Gender.Male
 
-                var activityLevel = when(apdfb.physicalActivityLevelSp.selectedItemPosition){
+                val activityLevel = when(apdfb.physicalActivityLevelSp.selectedItemPosition){
                     0 -> ActivityLevel.Sedentary
                     1 -> ActivityLevel.Light
                     2 -> ActivityLevel.Moderate
@@ -56,8 +58,10 @@ class PersonalDataFormActivity : AppCompatActivity() {
                 val message = "Redirecionando para tela de IMC"
                 Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
 
-                Intent(this, ImcResultActivity::class.java).let {
-                    startActivity(it)
+                Intent(this, ImcResultActivity::class.java).apply {
+                    putExtra(EXTRA_USER, user)
+                    putExtra(EXTRA_IMC, imc)
+                    startActivity(this)
                 }
             }
         }
