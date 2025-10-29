@@ -49,8 +49,9 @@ class ImcResultActivity : AppCompatActivity() {
         air.calculateCalorieExpenditureBt.setOnClickListener {
             val message = "Redirecionando para tela de gastos caloricos diarios"
             Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
-            Intent(this, DailyCaloriesActivity::class.java).let {
-                startActivity(it)
+            Intent(this, DailyCaloriesActivity::class.java).let { intent ->
+                intent.putExtra(EXTRA_USER, user)
+                startActivity(intent)
             }
         }
 
