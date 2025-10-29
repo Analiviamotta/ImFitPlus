@@ -1,16 +1,17 @@
 plugins {
     alias(libs.plugins.android.application)
-    alias(libs.plugins.jetbrains.kotlin.android)
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.parcelize)
 }
 
 android {
     namespace = "br.edu.ifsp.scl.ads.prdm.sc3033945.imfitplus"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "br.edu.ifsp.scl.ads.prdm.sc3033945.imfitplus"
         minSdk = 26
-        targetSdk = 35
+        targetSdk = 36
         versionCode = 1
         versionName = "1.0"
 
