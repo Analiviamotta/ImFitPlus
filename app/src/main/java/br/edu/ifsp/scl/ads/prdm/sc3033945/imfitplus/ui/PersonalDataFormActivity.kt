@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import br.edu.ifsp.scl.ads.prdm.sc3033945.imfitplus.databinding.ActivityPersonalDataFormBinding
+import br.edu.ifsp.scl.ads.prdm.sc3033945.imfitplus.model.UserDTO
 
 class PersonalDataFormActivity : AppCompatActivity() {
     private val apdfb: ActivityPersonalDataFormBinding by lazy {
