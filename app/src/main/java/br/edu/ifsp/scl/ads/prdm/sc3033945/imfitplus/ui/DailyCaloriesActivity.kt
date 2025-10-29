@@ -47,8 +47,9 @@ class DailyCaloriesActivity : AppCompatActivity() {
 
             Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
 
-            Intent(this, IdealWeightActivity::class.java).let {
-                startActivity(it)
+            Intent(this, IdealWeightActivity::class.java).apply {
+                putExtra(EXTRA_USER, user)
+                startActivity(this)
             }
         }
 
