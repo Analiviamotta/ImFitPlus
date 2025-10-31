@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.Resume">
+
+    <TextView
+        android:id="@+id/header_title"
+
+        android:text="@string/resumo_de_saude"
+
+        android:textSize="25sp"
+        android:textColor="@color/rose"
+        android:fontFamily="sans-serif-black"
+        android:textAlignment="textStart"
+
+        android:padding="16dp"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/textLL"
+        android:orientation="vertical"
+
+        android:gravity="center"
+
+        android:layout_height="0dp"
+        android:layout_width="match_parent"
+
+        app:layout_constraintTop_toBottomOf="@+id/header_title">
+
+        <TextView
+            android:id="@+id/nameTv"
+            android:text="@string/nome_s"
+
+            android:padding="16dp"
+            android:textSize="20sp"
+
+            android:fontFamily="sans-serif-condensed"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="textStart" />
+
+        <TextView
+            android:id="@+id/imcResultTv"
+
+            android:text="@string/imc_s"
+
+            android:textSize="20sp"
+            android:padding="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="textStart" />
+
+        <TextView
+            android:id="@+id/categoryTv"
+
+            android:text="@string/categoria_do_imc_s"
+
+            android:fontFamily="sans-serif-condensed"
+
+            android:padding="16dp"
+            android:textSize="20sp"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="textStart" />
+
+        <TextView
+            android:id="@+id/idealWeightTv"
+
+            android:text="@string/peso_ideal_s"
+
+            android:fontFamily="sans-serif-condensed"
+
+            android:padding="16dp"
+            android:textSize="20sp"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="textStart" />
+
+        <TextView
+            android:id="@+id/dailyCaloriesResultTv"
+
+            android:text="@string/gasto_calo_rico_diario_s"
+
+            android:fontFamily="sans-serif-condensed"
+
+            android:padding="16dp"
+            android:textSize="20sp"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="textStart" />
+
+        <TextView
+            android:id="@+id/waterTv"
+
+            android:text="@string/recomenda_o_de_gasto_de_gua"
+
+            android:fontFamily="sans-serif-condensed"
+
+            android:padding="16dp"
+            android:textSize="20sp"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="textStart" />
+
+
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

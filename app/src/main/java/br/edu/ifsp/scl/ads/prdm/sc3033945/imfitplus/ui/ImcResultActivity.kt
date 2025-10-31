@@ -7,6 +7,7 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import br.edu.ifsp.scl.ads.prdm.sc3033945.imfitplus.databinding.ActivityImcResultBinding
 import br.edu.ifsp.scl.ads.prdm.sc3033945.imfitplus.model.Constants.EXTRA_IMC
+import br.edu.ifsp.scl.ads.prdm.sc3033945.imfitplus.model.Constants.EXTRA_IMC_CATEGORY
 import br.edu.ifsp.scl.ads.prdm.sc3033945.imfitplus.model.Constants.EXTRA_USER
 import br.edu.ifsp.scl.ads.prdm.sc3033945.imfitplus.model.UserDTO
 
@@ -51,6 +52,8 @@ class ImcResultActivity : AppCompatActivity() {
             Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
             Intent(this, DailyCaloriesActivity::class.java).let { intent ->
                 intent.putExtra(EXTRA_USER, user)
+                intent.putExtra(EXTRA_IMC, imc)
+                intent.putExtra(EXTRA_IMC_CATEGORY, category )
                 startActivity(intent)
             }
         }

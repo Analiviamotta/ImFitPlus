@@ -7,6 +7,9 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import br.edu.ifsp.scl.ads.prdm.sc3033945.imfitplus.databinding.ActivityDailyCaloriesBinding
 import br.edu.ifsp.scl.ads.prdm.sc3033945.imfitplus.model.ActivityLevel
+import br.edu.ifsp.scl.ads.prdm.sc3033945.imfitplus.model.Constants.EXTRA_DAILY_CALORY
+import br.edu.ifsp.scl.ads.prdm.sc3033945.imfitplus.model.Constants.EXTRA_IMC
+import br.edu.ifsp.scl.ads.prdm.sc3033945.imfitplus.model.Constants.EXTRA_IMC_CATEGORY
 import br.edu.ifsp.scl.ads.prdm.sc3033945.imfitplus.model.Constants.EXTRA_USER
 import br.edu.ifsp.scl.ads.prdm.sc3033945.imfitplus.model.Gender
 import br.edu.ifsp.scl.ads.prdm.sc3033945.imfitplus.model.UserDTO
@@ -27,12 +30,16 @@ class DailyCaloriesActivity : AppCompatActivity() {
             intent.getParcelableExtra<UserDTO>(EXTRA_USER)
         }
 
+        val imc =  intent.getDoubleExtra(EXTRA_IMC, 0.0)
+        val category = intent.getStringExtra(EXTRA_IMC_CATEGORY)
+        var tmb = 0.0
+        var dailyCalories = 0.0
+
         if (user == null) {
             Toast.makeText(this, "Usuário não encontrado", Toast.LENGTH_SHORT).show()
         } else {
-            val tmb = calculateTMB(user)
-            val dailyCalories = calculateDailyCalories(tmb, user.activityLevel)
-
+            tmb = calculateTMB(user)
+            dailyCalories = calculateDailyCalories(tmb, user.activityLevel)
             adcb.tmbTv.text = String.format("Sua Taxa Metabólica Basal é %.2f", tmb)
             adcb.dailyCaloriesResultTv.text = String.format("Seu gasto diário de calorias é %.2f kcal", dailyCalories)
         }
@@ -50,6 +57,9 @@ class DailyCaloriesActivity : AppCompatActivity() {
 
             Intent(this, IdealWeightActivity::class.java).apply {
                 putExtra(EXTRA_USER, user)
+                putExtra(EXTRA_IMC, imc)
+                putExtra(EXTRA_IMC_CATEGORY, category)
+                putExtra(EXTRA_DAILY_CALORY, dailyCalories)
                 startActivity(this)
             }
         }
@@ -65,7 +75,7 @@ class DailyCaloriesActivity : AppCompatActivity() {
         return 66 + (13.7 * user.weight) + (5 * user.height * 100) - (6.8 * user.age)
     }
 
-    private fun calculateTMB(user: UserDTO): Double {
+    private fun calculateTMB(user: UserDTO ): Double {
         return if (user.gender == Gender.Female) {
             calculateFemaleTMB(user)
         } else {

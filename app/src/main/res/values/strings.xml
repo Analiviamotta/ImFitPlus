@@ -30,4 +30,12 @@
     <string name="ideal_weight">Peso ideal</string>
     <string name="finish">Finalizar</string>
     <string name="tmb">Sua Taxa Metabólica Basal é %s</string>
+    <string name="resumo_de_saude">Resumo de saude</string>
+    <string name="nome_s">Nome: %s</string>
+    <string name="imc_s">IMC: %s</string>
+    <string name="categoria_do_imc_s">Categoria do IMC: %s</string>
+    <string name="peso_ideal_s">Peso ideal: %s</string>
+    <string name="gasto_calo_rico_diario_s">Gasto Caloórico Diario: %s</string>
+    <string name="recomenda_o_de_gasto_de_gua">Recomendação de gasto de água: %s</string>
+    <string name="verificar_resumo">Verificar resumo</string>
 </resources>

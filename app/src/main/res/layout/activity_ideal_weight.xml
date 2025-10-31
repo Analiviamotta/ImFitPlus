@@ -87,9 +87,9 @@
 
 
         <Button
-            android:id="@+id/finishBt"
+            android:id="@+id/openResumeBt"
 
-            android:text="@string/finish"
+            android:text="@string/verificar_resumo"
 
             android:textSize="14sp"
             android:fontFamily="sans-serif-black"
