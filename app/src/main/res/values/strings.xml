@@ -10,7 +10,7 @@
     <string name="gender">Gênero:</string>
     <string name="female">Feminino</string>
     <string name="male">Masculino</string>
-    <string name="height">Altura:</string>
+    <string name="height">Altura (metros):</string>
     <string name="height_placeholder">Informe sua altura</string>
     <string name="weight">Peso:</string>
     <string name="weight_placeholder">Informe seu peso</string>
@@ -29,4 +29,5 @@
     <string name="calculate_ideal_weight">Calcular peso ideal</string>
     <string name="ideal_weight">Peso ideal</string>
     <string name="finish">Finalizar</string>
+    <string name="tmb">Sua Taxa Metabólica Basal é %s</string>
 </resources>

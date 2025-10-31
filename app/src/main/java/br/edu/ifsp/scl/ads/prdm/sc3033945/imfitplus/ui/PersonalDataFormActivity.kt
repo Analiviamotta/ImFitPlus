@@ -25,14 +25,21 @@ class PersonalDataFormActivity : AppCompatActivity() {
 
         apdfb.calculateIMCBt.setOnClickListener {
 
+            val name = apdfb.nameEt.text.toString()
+            val age = apdfb.ageEt.text.toString().toDoubleOrNull() ?: 0.0
             val height = apdfb.heightEt.text.toString().toDoubleOrNull() ?: 0.0
             val weight = apdfb.weightEt.text.toString().toDoubleOrNull() ?: 0.0
 
             if(height <= 0){
                 Toast.makeText(this, "Altura invalida", Toast.LENGTH_SHORT).show()
-            }else if (weight <= 0){
+            } else if (weight <= 0){
                 Toast.makeText(this, "Peso invalido", Toast.LENGTH_SHORT).show()
-            } else {
+            } else if(name.isEmpty()) {
+                Toast.makeText(this, "O nome e obrigatorio", Toast.LENGTH_SHORT).show()
+
+            }else if(age <= 0){
+                Toast.makeText(this, "Idade invalida", Toast.LENGTH_SHORT).show()
+            }else{
                 val userId = UUID.randomUUID().toString()
                 val imc = weight / (height * height)
 

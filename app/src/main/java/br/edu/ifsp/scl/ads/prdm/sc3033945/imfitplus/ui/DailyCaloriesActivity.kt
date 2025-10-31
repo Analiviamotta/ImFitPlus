@@ -33,7 +33,8 @@ class DailyCaloriesActivity : AppCompatActivity() {
             val tmb = calculateTMB(user)
             val dailyCalories = calculateDailyCalories(tmb, user.activityLevel)
 
-            adcb.dailyCaloriesResultTv.text = String.format("Seu gasto diário de calorias é %.0f kcal", dailyCalories)
+            adcb.tmbTv.text = String.format("Sua Taxa Metabólica Basal é %.2f", tmb)
+            adcb.dailyCaloriesResultTv.text = String.format("Seu gasto diário de calorias é %.2f kcal", dailyCalories)
         }
 
         adcb.backBt.setOnClickListener {
@@ -57,11 +58,11 @@ class DailyCaloriesActivity : AppCompatActivity() {
     }
 
     private fun calculateFemaleTMB(user: UserDTO): Double {
-        return 655.1 + (9.6 * user.weight) + (1.8 * user.height * 100) - (4.7 * user.age)
+        return 655 + (9.6 * user.weight) + (1.8 * user.height * 100) - (4.7 * user.age)
     }
 
     private fun calculateMaleTMB(user: UserDTO): Double {
-        return 66.5 + (13.7 * user.weight) + (5.0 * user.height * 100) - (6.8 * user.age)
+        return 66 + (13.7 * user.weight) + (5 * user.height * 100) - (6.8 * user.age)
     }
 
     private fun calculateTMB(user: UserDTO): Double {
