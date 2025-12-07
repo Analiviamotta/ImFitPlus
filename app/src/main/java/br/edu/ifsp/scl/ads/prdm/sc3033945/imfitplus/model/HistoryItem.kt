@@ -6,7 +6,7 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class HistoryItemDTO(
-    var id: String = "",
+    var id: Int = 0,
     var userAge: Int = 0,
     var userName: String = "",
     var weight: Double = 0.0,
