@@ -72,6 +72,23 @@
         android:textSize="16sp"
         android:fontFamily="sans-serif-black"
 
+        app:layout_constraintBottom_toTopOf="@id/historyBt"
+        />
+
+    <Button
+        android:id="@+id/historyBt"
+        android:text="Visualizar histórico"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:padding="20dp"
+        android:layout_margin="14dp"
+        android:backgroundTint="@color/rose_light"
+
+        android:textSize="16sp"
+        android:fontFamily="sans-serif-black"
+
         app:layout_constraintBottom_toBottomOf="parent"
         />
 
