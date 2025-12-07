@@ -23,5 +23,14 @@ class MainActivity : AppCompatActivity() {
                 startActivity(it)
             }
         }
+
+        amb.historyBt.setOnClickListener {
+            val message = "Direcionando para a tela de histórico"
+            Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+
+            Intent(this, HistoryActivity::class.java).let {
+                startActivity(it)
+            }
+        }
     }
 }
