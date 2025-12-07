@@ -7,4 +7,11 @@
     android:layout_height="match_parent"
     tools:context=".ui.HistoryActivity">
 
+    <ListView
+        android:id="@+id/historyItem"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="-178dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
