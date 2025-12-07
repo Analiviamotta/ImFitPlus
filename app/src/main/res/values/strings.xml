@@ -38,4 +38,6 @@
     <string name="gasto_calo_rico_diario_s">Gasto Caloórico Diario: %s</string>
     <string name="recomenda_o_de_gasto_de_gua">Recomendação de gasto de água: %s</string>
     <string name="verificar_resumo">Verificar resumo</string>
+    <string name="history_user_name">Name</string>
+    <string name="divider">|</string>
 </resources>
