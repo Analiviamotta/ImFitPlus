@@ -42,6 +42,9 @@ class HistoryAdapter (
         return historyTileView
     }
 
-        private data class TileHistoryViewHolder(val userNameTv: TextView, val ageTv: TextView, val
-        weightTv: TextView, val idealWeightTv: TextView, val imcTv: TextView, val categoryTv: TextView)
+    private data class TileHistoryViewHolder(val userNameTv: TextView, val ageTv: TextView, val
+        weightTv: TextView, val idealWeightTv: TextView, val imcTv: TextView,
+                                             val categoryTv: TextView)
+
+
 }

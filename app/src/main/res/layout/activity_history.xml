@@ -7,10 +7,46 @@
     android:layout_height="match_parent"
     tools:context=".ui.HistoryActivity">
 
+    <TextView
+        android:id="@+id/titleTv"
+
+        android:text="Histórico"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:textAlignment="center"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+
+        android:textSize="24sp"
+        android:paddingTop="14dp"
+        android:paddingHorizontal="14dp"
+        android:fontFamily="sans-serif-black"
+        />
+
+    <EditText
+        android:layout_margin="10dp"
+        android:id="@+id/searchEt"
+        android:inputType="text"
+        android:autofillHints="name"
+        android:hint="Digite o nome do usuario"
+
+        android:textColor="@color/black"
+
+        android:background="@android:drawable/edit_text"
+        app:layout_constraintTop_toBottomOf="@id/titleTv"
+        app:layout_constraintBottom_toTopOf="@id/historyLV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp" />
+
     <ListView
         android:id="@+id/historyLV"
+
+        app:layout_constraintTop_toBottomOf="@id/searchEt"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="-178dp" />
 

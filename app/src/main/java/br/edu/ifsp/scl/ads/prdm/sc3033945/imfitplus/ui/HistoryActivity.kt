@@ -1,6 +1,8 @@
 package br.edu.ifsp.scl.ads.prdm.sc3033945.imfitplus.ui
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -16,9 +18,12 @@ class HistoryActivity : AppCompatActivity() {
     private val hab: ActivityHistoryBinding by lazy {
         ActivityHistoryBinding.inflate(layoutInflater)
     }
-    private val historyList: MutableList<HistoryItemDTO> = mutableListOf()
+
+    private val historyListFull: MutableList<HistoryItemDTO> = mutableListOf()
+
+    private val historyListFiltered: MutableList<HistoryItemDTO> = mutableListOf()
     private val historyAdapter: HistoryAdapter by lazy {
-        HistoryAdapter(this, historyList)
+        HistoryAdapter(this, historyListFiltered)
     }
 
 
@@ -27,17 +32,51 @@ class HistoryActivity : AppCompatActivity() {
         setContentView(hab.root)
 
         fillHistoryList()
+
+
+        historyListFiltered.addAll(historyListFull)
+
+
         hab.historyLV.adapter = historyAdapter
 
+
+        hab.searchEt.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                filterHistory(s.toString())
+            }
+
+            override fun afterTextChanged(s: Editable?) {}
+        })
+
+
+
+    }
+    private fun filterHistory(query: String) {
+        historyListFiltered.clear()
+
+        if (query.isEmpty()) {
+
+            historyListFiltered.addAll(historyListFull)
+        } else {
+
+            val filtered = historyListFull.filter { history ->
+                history.userName.contains(query, ignoreCase = true)
+            }
+            historyListFiltered.addAll(filtered)
+        }
+
+        historyAdapter.notifyDataSetChanged()
     }
 
     private fun fillHistoryList() {
         for (i in 1..10) {
-            historyList.add(
+            historyListFull.add(
                 HistoryItemDTO(
                     i,
                     20,
-                    "Usuario ${i}",
+                    "Usuario $i",
                     20.0,
                     ActivityLevel.Sedentary,
                     9.0,
