@@ -11,6 +11,7 @@ import br.edu.ifsp.scl.ads.prdm.sc3033945.imfitplus.model.Constants.EXTRA_IMC
 import br.edu.ifsp.scl.ads.prdm.sc3033945.imfitplus.model.Constants.EXTRA_USER
 import br.edu.ifsp.scl.ads.prdm.sc3033945.imfitplus.model.Gender
 import br.edu.ifsp.scl.ads.prdm.sc3033945.imfitplus.model.UserDTO
+import java.time.LocalDateTime
 import java.util.UUID
 
 class PersonalDataFormActivity : AppCompatActivity() {
@@ -59,6 +60,7 @@ class PersonalDataFormActivity : AppCompatActivity() {
                     height,
                     weight,
                     gender,
+                    LocalDateTime.now(),
                     activityLevel)
 
 
