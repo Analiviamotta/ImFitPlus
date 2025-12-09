@@ -76,6 +76,7 @@ class HistoryActivity : AppCompatActivity() {
                 HistoryItemDTO(
                     i,
                     20,
+                    1.8,
                     "Usuario $i",
                     20.0,
                     ActivityLevel.Sedentary,
