@@ -107,9 +107,14 @@ class UserSqlite(context: Context): UserDao {
         return userList
     }
 
-    override fun updateUser(user: UserDTO): Int {
-        TODO("Not yet implemented")
-    }
+    override fun updateUser(user: UserDTO): Int =
+        userDatabase.update(
+            USER_TABLE,
+            user.toContentValues(),
+            "$ID_COLUMN = ?",
+            arrayOf(user.id)
+            )
+
 
     private fun UserDTO.toContentValues() = ContentValues().apply {
         put(ID_COLUMN, id)
