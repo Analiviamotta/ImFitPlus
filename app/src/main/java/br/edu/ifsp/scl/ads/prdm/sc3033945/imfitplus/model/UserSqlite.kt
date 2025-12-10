@@ -3,10 +3,12 @@ package br.edu.ifsp.scl.ads.prdm.sc3033945.imfitplus.model
 import android.content.ContentValues
 import android.content.Context
 import android.content.Context.MODE_PRIVATE
+import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.util.Log
 import br.edu.ifsp.scl.ads.prdm.sc3033945.imfitplus.R
 import java.sql.SQLException
+import java.time.LocalDateTime
 
 class UserSqlite(context: Context): UserDao {
     companion object {
@@ -51,7 +53,27 @@ class UserSqlite(context: Context): UserDao {
     override fun createUser(user: UserDTO): Long = userDatabase.insert(USER_TABLE, null, user.toContentValues())
 
     override fun retrieveUser(userId: String): UserDTO {
-        TODO("Not yet implemented")
+        val cursor = userDatabase.query(true,
+            USER_TABLE,
+            null,
+            "$ID_COLUMN = ?",
+            arrayOf(userId),
+            null,
+            null,
+            null,
+            null)
+
+        return if(cursor.moveToFirst()){
+            val user = cursor.toUser()
+            cursor.close()
+            user
+
+
+        } else {
+            cursor.close()
+            UserDTO()
+        }
+
     }
 
     override fun retrieveUserByName(userName: String): UserDTO {
@@ -76,4 +98,16 @@ class UserSqlite(context: Context): UserDao {
         put(CREATED_AT_COLUMN, createdAt.toString())
         put(ACTIVITY_LEVEL_COLUMN, activityLevel.name)
     }
+
+    private fun Cursor.toUser() = UserDTO(
+        getString(getColumnIndexOrThrow(ID_COLUMN)),
+        getInt(getColumnIndexOrThrow(AGE_COLUMN)),
+        getString(getColumnIndexOrThrow(NAME_COLUMN)),
+        getDouble(getColumnIndexOrThrow(HEIGHT_COLUMN)),
+        getDouble(getColumnIndexOrThrow(WEIGHT_COLUMN)),
+        Gender.valueOf(getString(getColumnIndexOrThrow(GENDER_COLUMN))),
+        LocalDateTime.parse(getString(getColumnIndexOrThrow(CREATED_AT_COLUMN))),
+        ActivityLevel.valueOf(getString(getColumnIndexOrThrow(ACTIVITY_LEVEL_COLUMN)))
+    )
+
 }
