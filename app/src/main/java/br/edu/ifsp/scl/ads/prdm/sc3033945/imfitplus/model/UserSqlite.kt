@@ -95,7 +95,16 @@ class UserSqlite(context: Context): UserDao {
     }
 
     override fun retrieveUsers(): MutableList<UserDTO> {
-        TODO("Not yet implemented")
+       val userList: MutableList<UserDTO> = mutableListOf()
+        val cursor = userDatabase.rawQuery("SELECT * FROM $USER_TABLE;", null)
+
+        while (cursor.moveToNext()){
+            userList.add(cursor.toUser())
+        }
+
+        cursor.close()
+
+        return userList
     }
 
     override fun updateUser(user: UserDTO): Int {
