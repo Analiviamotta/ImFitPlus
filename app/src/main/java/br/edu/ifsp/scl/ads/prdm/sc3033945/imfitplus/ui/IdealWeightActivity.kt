@@ -48,13 +48,13 @@ class IdealWeightActivity : AppCompatActivity() {
         aiwb.openResumeBt.setOnClickListener {
             val message = "Redirecionando, para resumo de saude <3"
             Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
-            Intent(this, Resume::class.java).let {
+            Intent(this, Resume::class.java).let { intent ->
                 intent.putExtra(EXTRA_USER, user)
                 intent.putExtra(EXTRA_IMC, imc)
                 intent.putExtra(EXTRA_IMC_CATEGORY, category)
                 intent.putExtra(EXTRA_DAILY_CALORY, dailyCalories)
                 intent.putExtra(EXTRA_WEIGHT, idealWeight)
-                startActivity(it)
+                startActivity(intent)
             }
         }
     }
