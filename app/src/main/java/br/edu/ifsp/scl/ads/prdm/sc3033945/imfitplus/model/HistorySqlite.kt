@@ -1,5 +1,6 @@
 package br.edu.ifsp.scl.ads.prdm.sc3033945.imfitplus.model
 
+import android.content.ContentValues
 import android.content.Context
 import android.content.Context.MODE_PRIVATE
 import android.database.sqlite.SQLiteDatabase
@@ -50,9 +51,11 @@ class HistorySqlite(context: Context): HistoryDAO {
         }
     }
 
-    override fun createHistory(history: HistoryDTO): Long {
-        TODO("Not yet implemented")
-    }
+    override fun createHistory(history: HistoryDTO): Long = inFitPlusDatabase.insert(
+        HISTORY_TABLE,
+        null,
+        history.toContentValues()
+    )
 
     override fun retrieveHistory(historyId: String): HistoryDTO {
         TODO("Not yet implemented")
@@ -64,5 +67,17 @@ class HistorySqlite(context: Context): HistoryDAO {
 
     override fun retrieveHistoriesByUser(userId: String): MutableList<HistoryDTO> {
         TODO("Not yet implemented")
+    }
+
+    private fun HistoryDTO.toContentValues() = ContentValues().apply {
+        put(ID_COLUMN, id)
+        put(CREATED_AT_COLUMN, createdAt.toString())
+        put(USER_AGE_COLUMN, userAge)
+        put(HEIGHT_COLUMN, height)
+        put(WEIGHT_COLUMN, weight)
+        put(USER_ACTIVITY_LEVEL_COLUMN, userActivityLevel.name)
+        put(IMC_COLUMN, imc)
+        put(IDEAL_WEIGHT_COLUMN, idealWeight)
+        put(CATEGORY_COLUMN, category.name)
     }
 }
