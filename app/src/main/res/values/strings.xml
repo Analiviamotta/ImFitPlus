@@ -40,4 +40,7 @@
     <string name="verificar_resumo">Verificar resumo</string>
     <string name="history_user_name">Name</string>
     <string name="divider">|</string>
+    <string name="not_is_first_use">Já usei o app antes</string>
+    <string name="checkbox_description">Digite o mesmo nome que você usou quando acessou a primeira vez, para buscarmos suas informacoes</string>
+    <string name="preencher_informacoes">Preencher informacoes com base no registro anterior</string>
 </resources>

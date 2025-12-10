@@ -37,7 +37,9 @@ class HistorySqlite(context: Context): HistoryDAO {
                     "$USER_ACTIVITY_LEVEL_COLUMN TEXT NOT NULL, " +
                     "$IMC_COLUMN REAL NOT NULL, " +
                     "$IDEAL_WEIGHT_COLUMN REAL NOT NULL, " +
-                    "$CATEGORY_COLUMN TEXT NOT NULL" +
+                    "$CATEGORY_COLUMN TEXT NOT NULL, " +
+                    "FOREIGN KEY ($USER_ID_COLUMN) REFERENCES user(id) " +
+                    "ON DELETE CASCADE" +
                     ");"
     }
 

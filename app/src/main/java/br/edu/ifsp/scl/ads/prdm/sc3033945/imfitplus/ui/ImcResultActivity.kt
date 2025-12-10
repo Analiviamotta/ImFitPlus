@@ -4,12 +4,16 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import android.os.Build
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import br.edu.ifsp.scl.ads.prdm.sc3033945.imfitplus.databinding.ActivityImcResultBinding
 import br.edu.ifsp.scl.ads.prdm.sc3033945.imfitplus.model.Constants.EXTRA_IMC
 import br.edu.ifsp.scl.ads.prdm.sc3033945.imfitplus.model.Constants.EXTRA_IMC_CATEGORY
 import br.edu.ifsp.scl.ads.prdm.sc3033945.imfitplus.model.Constants.EXTRA_USER
 import br.edu.ifsp.scl.ads.prdm.sc3033945.imfitplus.model.UserDTO
+import org.json.JSONObject
+import java.io.Console
+import kotlin.math.log
 
 
 class ImcResultActivity : AppCompatActivity() {

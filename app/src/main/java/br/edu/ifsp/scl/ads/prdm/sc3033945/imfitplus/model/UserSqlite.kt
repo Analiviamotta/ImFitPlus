@@ -82,7 +82,7 @@ class UserSqlite(context: Context): UserDao {
             null,
             null,
             null,
-            null)
+            "1")
 
         return if(cursor.moveToFirst()){
             val user = cursor.toUser()
