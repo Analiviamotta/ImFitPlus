@@ -67,17 +67,31 @@ class UserSqlite(context: Context): UserDao {
             val user = cursor.toUser()
             cursor.close()
             user
-
-
         } else {
             cursor.close()
             UserDTO()
         }
-
     }
 
     override fun retrieveUserByName(userName: String): UserDTO {
-        TODO("Not yet implemented")
+        val cursor = userDatabase.query(true,
+            USER_TABLE,
+            null,
+            "$NAME_COLUMN = ?",
+            arrayOf(userName),
+            null,
+            null,
+            null,
+            null)
+
+        return if(cursor.moveToFirst()){
+            val user = cursor.toUser()
+            cursor.close()
+            user
+        } else {
+            cursor.close()
+            UserDTO()
+        }
     }
 
     override fun retrieveUsers(): MutableList<UserDTO> {
