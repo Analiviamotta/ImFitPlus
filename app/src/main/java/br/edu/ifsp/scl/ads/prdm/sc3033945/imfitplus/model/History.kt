@@ -4,6 +4,7 @@ import java.time.LocalDateTime
 
 data class HistoryDTO(
     var id: String = "",
+    var userId: String = "",
     var createdAt: LocalDateTime = LocalDateTime.now(),
     var userAge: Int = 0,
     var height: Double = 0.0,
@@ -11,5 +12,5 @@ data class HistoryDTO(
     var userActivityLevel: ActivityLevel = ActivityLevel.Sedentary,
     var imc: Double = 0.0,
     var idealWeight: Double = 0.0,
-    var category: Category
+    var category: Category = Category.OVERWEIGHT
 )
