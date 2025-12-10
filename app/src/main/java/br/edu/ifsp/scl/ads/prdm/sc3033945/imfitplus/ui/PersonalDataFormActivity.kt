@@ -113,6 +113,32 @@ class PersonalDataFormActivity : AppCompatActivity() {
         apdfb.calculateIMCBt.setOnClickListener {
 
             val name = apdfb.nameEt.text.toString()
+            val user = userController.getUserByName(name)
+
+           if(!apdfb.isNotFirstUseCb.isChecked) {
+
+               if (!user.id.isEmpty()) {
+                  Toast.makeText(
+                           this,
+                           "Já existe um usuario com esse nome",
+                           Toast.LENGTH_SHORT
+                   ).show()
+                   return@setOnClickListener
+               }
+
+           }else {
+               if (user.id.isEmpty()) {
+                   Toast.makeText(
+                       this,
+                       "Não foi encontrado um usuário com esse nome",
+                       Toast.LENGTH_SHORT
+                   ).show()
+                   return@setOnClickListener
+               }
+           }
+
+
+
             val age = apdfb.ageEt.text.toString().toDoubleOrNull() ?: 0.0
             val height = apdfb.heightEt.text.toString().toDoubleOrNull() ?: 0.0
             val weight = apdfb.weightEt.text.toString().toDoubleOrNull() ?: 0.0
