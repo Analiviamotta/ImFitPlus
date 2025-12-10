@@ -3,10 +3,12 @@ package br.edu.ifsp.scl.ads.prdm.sc3033945.imfitplus.model
 import android.content.ContentValues
 import android.content.Context
 import android.content.Context.MODE_PRIVATE
+import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.util.Log
 import br.edu.ifsp.scl.ads.prdm.sc3033945.imfitplus.R
 import java.sql.SQLException
+import java.time.LocalDateTime
 
 class HistorySqlite(context: Context): HistoryDAO {
     companion object {
@@ -62,7 +64,16 @@ class HistorySqlite(context: Context): HistoryDAO {
     }
 
     override fun retrieveHistories(): MutableList<HistoryDTO> {
-        TODO("Not yet implemented")
+        val historyList: MutableList<HistoryDTO> = mutableListOf()
+        val cursor = inFitPlusDatabase.rawQuery("SELECT * FROM $HISTORY_TABLE;", null)
+
+        while (cursor.moveToNext()) {
+            historyList.add(cursor.toHistory())
+        }
+
+        cursor.close()
+        return historyList
+
     }
 
     override fun retrieveHistoriesByUser(userId: String): MutableList<HistoryDTO> {
@@ -80,4 +91,16 @@ class HistorySqlite(context: Context): HistoryDAO {
         put(IDEAL_WEIGHT_COLUMN, idealWeight)
         put(CATEGORY_COLUMN, category.name)
     }
+
+    private fun Cursor.toHistory() = HistoryDTO(
+         getString(getColumnIndexOrThrow(ID_COLUMN)),
+         LocalDateTime.parse(getString(getColumnIndexOrThrow(CREATED_AT_COLUMN))),
+         getInt(getColumnIndexOrThrow(USER_AGE_COLUMN)),
+         getDouble(getColumnIndexOrThrow(HEIGHT_COLUMN)),
+         getDouble(getColumnIndexOrThrow(WEIGHT_COLUMN)),
+         ActivityLevel.valueOf(getString(getColumnIndexOrThrow(USER_ACTIVITY_LEVEL_COLUMN))),
+         getDouble(getColumnIndexOrThrow(IMC_COLUMN)),
+         getDouble(getColumnIndexOrThrow(IDEAL_WEIGHT_COLUMN)),
+         Category.valueOf(getString(getColumnIndexOrThrow(CATEGORY_COLUMN)))
+    )
 }
