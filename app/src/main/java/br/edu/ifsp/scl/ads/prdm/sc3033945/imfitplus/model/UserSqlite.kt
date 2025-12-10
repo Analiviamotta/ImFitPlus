@@ -35,7 +35,7 @@ class UserSqlite(context: Context): UserDao {
                 ");"
     }
 
-    private val userDatabase : SQLiteDatabase = context.openOrCreateDatabase(
+    private val inFitPlusDatabase : SQLiteDatabase = context.openOrCreateDatabase(
         IM_FIT_PLUS_DB_FILE,
         MODE_PRIVATE,
         null
@@ -44,16 +44,16 @@ class UserSqlite(context: Context): UserDao {
     // Criando a tabela de usuarios
     init {
         try {
-            userDatabase.execSQL(CREATE_USER_TABLE_STATEMENT)
+            inFitPlusDatabase.execSQL(CREATE_USER_TABLE_STATEMENT)
         } catch (se: SQLException) {
             Log.e(context.getString(R.string.app_name), se.message.toString())
         }
     }
 
-    override fun createUser(user: UserDTO): Long = userDatabase.insert(USER_TABLE, null, user.toContentValues())
+    override fun createUser(user: UserDTO): Long = inFitPlusDatabase.insert(USER_TABLE, null, user.toContentValues())
 
     override fun retrieveUser(userId: String): UserDTO {
-        val cursor = userDatabase.query(true,
+        val cursor = inFitPlusDatabase.query(true,
             USER_TABLE,
             null,
             "$ID_COLUMN = ?",
@@ -74,7 +74,7 @@ class UserSqlite(context: Context): UserDao {
     }
 
     override fun retrieveUserByName(userName: String): UserDTO {
-        val cursor = userDatabase.query(true,
+        val cursor = inFitPlusDatabase.query(true,
             USER_TABLE,
             null,
             "$NAME_COLUMN = ?",
@@ -96,7 +96,7 @@ class UserSqlite(context: Context): UserDao {
 
     override fun retrieveUsers(): MutableList<UserDTO> {
        val userList: MutableList<UserDTO> = mutableListOf()
-        val cursor = userDatabase.rawQuery("SELECT * FROM $USER_TABLE;", null)
+        val cursor = inFitPlusDatabase.rawQuery("SELECT * FROM $USER_TABLE;", null)
 
         while (cursor.moveToNext()){
             userList.add(cursor.toUser())
@@ -108,7 +108,7 @@ class UserSqlite(context: Context): UserDao {
     }
 
     override fun updateUser(user: UserDTO): Int =
-        userDatabase.update(
+        inFitPlusDatabase.update(
             USER_TABLE,
             user.toContentValues(),
             "$ID_COLUMN = ?",
