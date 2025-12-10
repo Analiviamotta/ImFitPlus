@@ -16,6 +16,7 @@ class HistorySqlite(context: Context): HistoryDAO {
         private const val HISTORY_TABLE = "history"
 
         private const val ID_COLUMN = "id"
+        private const val USER_ID_COLUMN = "userId"
         private const val CREATED_AT_COLUMN = "createdAt"
         private const val USER_AGE_COLUMN = "userAge"
         private const val HEIGHT_COLUMN = "height"
@@ -28,6 +29,7 @@ class HistorySqlite(context: Context): HistoryDAO {
         private val CREATE_HISTORY_TABLE_STATEMENT =
             "CREATE TABLE IF NOT EXISTS $HISTORY_TABLE (" +
                     "$ID_COLUMN TEXT PRIMARY KEY, " +
+                    "$USER_ID_COLUMN TEXT NOT NULL, " +
                     "$CREATED_AT_COLUMN TEXT NOT NULL, " +
                     "$USER_AGE_COLUMN INTEGER NOT NULL, " +
                     "$HEIGHT_COLUMN REAL NOT NULL, " +
@@ -60,12 +62,32 @@ class HistorySqlite(context: Context): HistoryDAO {
     )
 
     override fun retrieveHistory(historyId: String): HistoryDTO {
-        TODO("Not yet implemented")
+        val cursor = inFitPlusDatabase.query(
+            HISTORY_TABLE,
+            null,
+            "$ID_COLUMN = ?",
+            arrayOf(historyId),
+            null,
+            null,
+            null
+        )
+
+        return if(cursor.moveToFirst()){
+            val history = cursor.toHistory()
+            cursor.close()
+            history
+        } else {
+            cursor.close()
+            HistoryDTO()
+        }
+
+
     }
 
     override fun retrieveHistories(): MutableList<HistoryDTO> {
         val historyList: MutableList<HistoryDTO> = mutableListOf()
-        val cursor = inFitPlusDatabase.rawQuery("SELECT * FROM $HISTORY_TABLE;", null)
+        val cursor = inFitPlusDatabase.rawQuery("SELECT * FROM $HISTORY_TABLE;",
+            null)
 
         while (cursor.moveToNext()) {
             historyList.add(cursor.toHistory())
@@ -77,11 +99,29 @@ class HistorySqlite(context: Context): HistoryDAO {
     }
 
     override fun retrieveHistoriesByUser(userId: String): MutableList<HistoryDTO> {
-        TODO("Not yet implemented")
+        val historyList: MutableList<HistoryDTO> = mutableListOf()
+
+        val cursor = inFitPlusDatabase.query(
+            HISTORY_TABLE,
+            null,
+            "$USER_ID_COLUMN = ?",
+            arrayOf(userId),
+            null,
+            null,
+            null
+        )
+
+        while (cursor.moveToNext()) {
+            historyList.add(cursor.toHistory())
+        }
+
+        cursor.close()
+        return historyList
     }
 
     private fun HistoryDTO.toContentValues() = ContentValues().apply {
         put(ID_COLUMN, id)
+        put(USER_ID_COLUMN, userId)
         put(CREATED_AT_COLUMN, createdAt.toString())
         put(USER_AGE_COLUMN, userAge)
         put(HEIGHT_COLUMN, height)
@@ -94,11 +134,14 @@ class HistorySqlite(context: Context): HistoryDAO {
 
     private fun Cursor.toHistory() = HistoryDTO(
          getString(getColumnIndexOrThrow(ID_COLUMN)),
-         LocalDateTime.parse(getString(getColumnIndexOrThrow(CREATED_AT_COLUMN))),
+         getString(getColumnIndexOrThrow(USER_ID_COLUMN)),
+         LocalDateTime.parse(getString(getColumnIndexOrThrow(
+             CREATED_AT_COLUMN))),
          getInt(getColumnIndexOrThrow(USER_AGE_COLUMN)),
          getDouble(getColumnIndexOrThrow(HEIGHT_COLUMN)),
          getDouble(getColumnIndexOrThrow(WEIGHT_COLUMN)),
-         ActivityLevel.valueOf(getString(getColumnIndexOrThrow(USER_ACTIVITY_LEVEL_COLUMN))),
+         ActivityLevel.valueOf(getString(
+             getColumnIndexOrThrow(USER_ACTIVITY_LEVEL_COLUMN))),
          getDouble(getColumnIndexOrThrow(IMC_COLUMN)),
          getDouble(getColumnIndexOrThrow(IDEAL_WEIGHT_COLUMN)),
          Category.valueOf(getString(getColumnIndexOrThrow(CATEGORY_COLUMN)))
