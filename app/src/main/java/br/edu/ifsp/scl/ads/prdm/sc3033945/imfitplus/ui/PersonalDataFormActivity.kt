@@ -36,7 +36,6 @@ class PersonalDataFormActivity : AppCompatActivity() {
 
             val enabled = !isChecked
 
-            apdfb.nameEt.isEnabled = enabled
             apdfb.ageEt.isEnabled = enabled
             apdfb.heightEt.isEnabled = enabled
             apdfb.weightEt.isEnabled = enabled
