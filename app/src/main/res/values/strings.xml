@@ -45,4 +45,5 @@
     <string name="preencher_informacoes">Preencher informacoes com base no registro anterior</string>
     <string name="save_bt_label">Salvar Informacoes e visualizar historico</string>
     <string name="history_button_label">Visualizar histórico</string>
+    <string name="return_to_init_screen">Voltar para o inicio</string>
 </resources>

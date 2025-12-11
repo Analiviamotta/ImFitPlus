@@ -1,5 +1,6 @@
 package br.edu.ifsp.scl.ads.prdm.sc3033945.imfitplus.ui
 
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.text.Editable
@@ -16,6 +17,8 @@ import br.edu.ifsp.scl.ads.prdm.sc3033945.imfitplus.controller.ResumeController
 import br.edu.ifsp.scl.ads.prdm.sc3033945.imfitplus.databinding.ActivityHistoryBinding
 import br.edu.ifsp.scl.ads.prdm.sc3033945.imfitplus.model.ActivityLevel
 import br.edu.ifsp.scl.ads.prdm.sc3033945.imfitplus.model.Category
+import br.edu.ifsp.scl.ads.prdm.sc3033945.imfitplus.model.Constants.EXTRA_IMC
+import br.edu.ifsp.scl.ads.prdm.sc3033945.imfitplus.model.Constants.EXTRA_IMC_CATEGORY
 import br.edu.ifsp.scl.ads.prdm.sc3033945.imfitplus.model.Constants.EXTRA_USER
 import br.edu.ifsp.scl.ads.prdm.sc3033945.imfitplus.model.HistoryDTO
 import br.edu.ifsp.scl.ads.prdm.sc3033945.imfitplus.model.HistoryItemDTO
@@ -70,9 +73,13 @@ class HistoryActivity : AppCompatActivity() {
             override fun afterTextChanged(s: Editable?) {}
         })
 
-
+        hab.backBt.setOnClickListener {
+            startActivity(Intent(this, MainActivity::class.java))
+        }
 
     }
+
+
     private fun filterHistory(query: String) {
         historyListFiltered.clear()
 
