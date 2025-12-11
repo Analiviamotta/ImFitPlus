@@ -4,6 +4,7 @@ import android.os.Build
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -49,6 +50,9 @@ class HistoryActivity : AppCompatActivity() {
         }
 
         fillHistoryList(user)
+
+        if(user !== null) hab.searchEt.visibility = View.GONE
+        else hab.searchEt.visibility = View.VISIBLE
 
         historyListFiltered.addAll(historyListFull)
 
