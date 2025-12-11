@@ -68,8 +68,6 @@ class PersonalDataFormActivity : AppCompatActivity() {
             }
 
             val user = userController.getUserByName(name)
-
-
             if (user.id.isEmpty()) {
                 Toast.makeText(
                     this,
@@ -77,6 +75,14 @@ class PersonalDataFormActivity : AppCompatActivity() {
                     Toast.LENGTH_SHORT
                 ).show()
                 return@setOnClickListener
+            } else {
+                apdfb.nameEt.isEnabled = true
+                apdfb.ageEt.isEnabled = true
+                apdfb.heightEt.isEnabled = true
+                apdfb.weightEt.isEnabled = true
+                apdfb.femaleRb.isEnabled = true
+                apdfb.maleRb.isEnabled = true
+                apdfb.physicalActivityLevelSp.isEnabled = true
             }
 
             apdfb.ageEt.setText(user.age.toString())

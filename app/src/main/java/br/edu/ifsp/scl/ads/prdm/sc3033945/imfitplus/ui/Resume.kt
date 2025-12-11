@@ -8,17 +8,26 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import br.edu.ifsp.scl.ads.prdm.sc3033945.imfitplus.R
+import br.edu.ifsp.scl.ads.prdm.sc3033945.imfitplus.controller.ResumeController
 import br.edu.ifsp.scl.ads.prdm.sc3033945.imfitplus.databinding.ActivityResumeBinding
+import br.edu.ifsp.scl.ads.prdm.sc3033945.imfitplus.model.Category
 import br.edu.ifsp.scl.ads.prdm.sc3033945.imfitplus.model.Constants.EXTRA_DAILY_CALORY
 import br.edu.ifsp.scl.ads.prdm.sc3033945.imfitplus.model.Constants.EXTRA_IMC
 import br.edu.ifsp.scl.ads.prdm.sc3033945.imfitplus.model.Constants.EXTRA_IMC_CATEGORY
 import br.edu.ifsp.scl.ads.prdm.sc3033945.imfitplus.model.Constants.EXTRA_USER
 import br.edu.ifsp.scl.ads.prdm.sc3033945.imfitplus.model.Constants.EXTRA_WEIGHT
+import br.edu.ifsp.scl.ads.prdm.sc3033945.imfitplus.model.HistoryDTO
 import br.edu.ifsp.scl.ads.prdm.sc3033945.imfitplus.model.UserDTO
+import java.time.LocalDateTime
+import java.util.UUID
 
 class Resume : AppCompatActivity() {
     private val ar: ActivityResumeBinding by lazy {
         ActivityResumeBinding.inflate(layoutInflater)
+    }
+
+    private val resumeController : ResumeController by lazy {
+        ResumeController(this)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,6 +45,9 @@ class Resume : AppCompatActivity() {
         val category = intent.getStringExtra(EXTRA_IMC_CATEGORY)
         val dailyCalories = intent.getDoubleExtra(EXTRA_DAILY_CALORY, 0.0)
         val weight = intent.getDoubleExtra(EXTRA_WEIGHT, 0.0)
+        val categoryEnum = Category.values().find {
+            it.label == category
+        } ?: Category.NORMAL
 
         if (user == null) {
             Toast.makeText(this, "Usuário não encontrado", Toast.LENGTH_SHORT).show()
@@ -49,6 +61,36 @@ class Resume : AppCompatActivity() {
             ar.idealWeightTv.text = String.format("Peso Ideal: %.2f", weight)
             ar.dailyCaloriesResultTv.text = String.format("Gasto Calórico Diario: %.2f", dailyCalories)
             ar.waterTv.text = String.format("Recomendaçao de consumo de agua em ml: %.2f", water)
+        }
+
+        ar.saveBt.setOnClickListener {
+            if(user === null) return@setOnClickListener
+
+            Thread{
+                val findUser = resumeController.getUserByName(user.name)
+
+                if(findUser.id.isEmpty()) {
+                    resumeController.addUser(user)
+                } else {
+                    user.id = findUser.id
+                    resumeController.updateUser(user)
+                }
+
+                val history = HistoryDTO(
+                    UUID.randomUUID().toString(),
+                    user.id,
+                    LocalDateTime.now(),
+                    user.age,
+                    user.height,
+                    user.weight,
+                    user.activityLevel,
+                    imc,
+                    weight,
+                    categoryEnum
+                )
+
+                resumeController.addHistory(history)
+            }.start()
         }
     }
 }
