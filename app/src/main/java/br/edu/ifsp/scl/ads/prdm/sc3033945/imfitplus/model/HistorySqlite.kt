@@ -88,7 +88,7 @@ class HistorySqlite(context: Context): HistoryDAO {
 
     override fun retrieveHistories(): MutableList<HistoryDTO> {
         val historyList: MutableList<HistoryDTO> = mutableListOf()
-        val cursor = inFitPlusDatabase.rawQuery("SELECT * FROM $HISTORY_TABLE;",
+        val cursor = inFitPlusDatabase.rawQuery("SELECT * FROM $HISTORY_TABLE ORDER BY $CREATED_AT_COLUMN DESC;",
             null)
 
         while (cursor.moveToNext()) {
@@ -110,7 +110,7 @@ class HistorySqlite(context: Context): HistoryDAO {
             arrayOf(userId),
             null,
             null,
-            null
+            "$CREATED_AT_COLUMN DESC"
         )
 
         while (cursor.moveToNext()) {

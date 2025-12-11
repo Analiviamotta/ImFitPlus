@@ -94,6 +94,20 @@ class UserSqlite(context: Context): UserDao {
         }
     }
 
+
+    override fun retrieveUsersBySearchName(userName: String): MutableList<UserDTO> {
+        val userList: MutableList<UserDTO> = mutableListOf()
+        val cursor = inFitPlusDatabase.rawQuery("SELECT * FROM $USER_TABLE WHERE $NAME_COLUMN LIKE '%$userName%';", null)
+
+        while (cursor.moveToNext()){
+            userList.add(cursor.toUser())
+        }
+
+        cursor.close()
+
+        return userList
+    }
+
     override fun retrieveUsers(): MutableList<UserDTO> {
        val userList: MutableList<UserDTO> = mutableListOf()
         val cursor = inFitPlusDatabase.rawQuery("SELECT * FROM $USER_TABLE;", null)

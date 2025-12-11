@@ -1,5 +1,6 @@
 package br.edu.ifsp.scl.ads.prdm.sc3033945.imfitplus.ui
 
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.widget.Toast
@@ -90,6 +91,11 @@ class Resume : AppCompatActivity() {
                 )
 
                 resumeController.addHistory(history)
+
+                Intent(this, HistoryActivity::class.java).apply {
+                    putExtra(EXTRA_USER, user)
+                    startActivity(this)
+                }
             }.start()
         }
     }

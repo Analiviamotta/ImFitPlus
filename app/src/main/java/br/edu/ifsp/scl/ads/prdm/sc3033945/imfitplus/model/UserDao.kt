@@ -6,4 +6,5 @@ interface UserDao {
     fun retrieveUserByName(userName: String): UserDTO
     fun retrieveUsers(): MutableList<UserDTO>
     fun updateUser(user: UserDTO): Int
+    fun retrieveUsersBySearchName(userName: String): MutableList<UserDTO>
 }

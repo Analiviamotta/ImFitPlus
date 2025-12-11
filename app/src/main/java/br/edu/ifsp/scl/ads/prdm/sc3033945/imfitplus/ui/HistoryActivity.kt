@@ -1,5 +1,6 @@
 package br.edu.ifsp.scl.ads.prdm.sc3033945.imfitplus.ui
 
+import android.os.Build
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -9,14 +10,23 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import br.edu.ifsp.scl.ads.prdm.sc3033945.imfitplus.R
 import br.edu.ifsp.scl.ads.prdm.sc3033945.imfitplus.adapter.HistoryAdapter
+import br.edu.ifsp.scl.ads.prdm.sc3033945.imfitplus.controller.HistoryController
+import br.edu.ifsp.scl.ads.prdm.sc3033945.imfitplus.controller.ResumeController
 import br.edu.ifsp.scl.ads.prdm.sc3033945.imfitplus.databinding.ActivityHistoryBinding
 import br.edu.ifsp.scl.ads.prdm.sc3033945.imfitplus.model.ActivityLevel
 import br.edu.ifsp.scl.ads.prdm.sc3033945.imfitplus.model.Category
+import br.edu.ifsp.scl.ads.prdm.sc3033945.imfitplus.model.Constants.EXTRA_USER
+import br.edu.ifsp.scl.ads.prdm.sc3033945.imfitplus.model.HistoryDTO
 import br.edu.ifsp.scl.ads.prdm.sc3033945.imfitplus.model.HistoryItemDTO
+import br.edu.ifsp.scl.ads.prdm.sc3033945.imfitplus.model.UserDTO
 
 class HistoryActivity : AppCompatActivity() {
     private val hab: ActivityHistoryBinding by lazy {
         ActivityHistoryBinding.inflate(layoutInflater)
+    }
+
+    private val historyController : HistoryController by lazy {
+        HistoryController(this)
     }
 
     private val historyListFull: MutableList<HistoryItemDTO> = mutableListOf()
@@ -31,8 +41,14 @@ class HistoryActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(hab.root)
 
-        fillHistoryList()
 
+        val user = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            intent.getParcelableExtra(EXTRA_USER, UserDTO::class.java)
+        } else {
+            intent.getParcelableExtra<UserDTO>(EXTRA_USER)
+        }
+
+        fillHistoryList(user)
 
         historyListFiltered.addAll(historyListFull)
 
@@ -61,28 +77,56 @@ class HistoryActivity : AppCompatActivity() {
             historyListFiltered.addAll(historyListFull)
         } else {
 
-            val filtered = historyListFull.filter { history ->
-                history.userName.contains(query, ignoreCase = true)
+           val users = historyController.getUsersBySearch(query)
+
+            users.forEach { user->
+                val histories = historyController.getHistoryByUser(user.id)
+                val historiItens = histories.map { history -> parseHistoryDTO(history, user.name) }
+
+                historyListFiltered.addAll(historiItens)
             }
-            historyListFiltered.addAll(filtered)
+
         }
 
         historyAdapter.notifyDataSetChanged()
     }
 
-    private fun fillHistoryList() {
-        for (i in 1..10) {
+    private fun parseHistoryDTO(history: HistoryDTO, userName: String): HistoryItemDTO =
+        HistoryItemDTO(
+            history.id,
+            history.userAge,
+            history.height,
+            userName,
+            history.weight,
+            history.userActivityLevel,
+            history.imc,
+            history.idealWeight,
+            history.category
+        )
+
+
+    private fun fillHistoryList(user: UserDTO?) {
+
+        val histories = if (user != null) {
+            historyController.getHistoryByUser(user.id)
+        } else {
+            historyController.getAllHistories()
+        }
+
+        histories.forEach { historyDTO ->
+            val user = historyController.getUserById(historyDTO.userId)
+
             historyListFull.add(
                 HistoryItemDTO(
-                    i,
-                    20,
-                    1.8,
-                    "Usuario $i",
-                    20.0,
-                    ActivityLevel.Sedentary,
-                    9.0,
-                    52.0,
-                    Category.OVERWEIGHT
+                    historyDTO.id,
+                    historyDTO.userAge,
+                    historyDTO.height,
+                    user.name,
+                    historyDTO.weight,
+                    historyDTO.userActivityLevel,
+                    historyDTO.imc,
+                    historyDTO.idealWeight,
+                    historyDTO.category
                 )
             )
         }
