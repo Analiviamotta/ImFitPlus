@@ -112,7 +112,8 @@ class HistoryActivity : AppCompatActivity() {
             history.userActivityLevel,
             history.imc,
             history.idealWeight,
-            history.category
+            history.category,
+            history.tmb
         )
 
 
@@ -137,7 +138,8 @@ class HistoryActivity : AppCompatActivity() {
                     historyDTO.userActivityLevel,
                     historyDTO.imc,
                     historyDTO.idealWeight,
-                    historyDTO.category
+                    historyDTO.category,
+                    historyDTO.tmb
                 )
             )
         }

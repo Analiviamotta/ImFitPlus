@@ -9,5 +9,6 @@ data class HistoryItemDTO(
     var userActivityLevel: ActivityLevel = ActivityLevel.Sedentary,
     var imc: Double = 0.0,
     var idealWeight: Double = 0.0,
-    var category: Category
+    var category: Category,
+    var tmb: Double = 0.0
 )

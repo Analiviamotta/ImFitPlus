@@ -10,6 +10,7 @@ import br.edu.ifsp.scl.ads.prdm.sc3033945.imfitplus.model.ActivityLevel
 import br.edu.ifsp.scl.ads.prdm.sc3033945.imfitplus.model.Constants.EXTRA_DAILY_CALORY
 import br.edu.ifsp.scl.ads.prdm.sc3033945.imfitplus.model.Constants.EXTRA_IMC
 import br.edu.ifsp.scl.ads.prdm.sc3033945.imfitplus.model.Constants.EXTRA_IMC_CATEGORY
+import br.edu.ifsp.scl.ads.prdm.sc3033945.imfitplus.model.Constants.EXTRA_TMB
 import br.edu.ifsp.scl.ads.prdm.sc3033945.imfitplus.model.Constants.EXTRA_USER
 import br.edu.ifsp.scl.ads.prdm.sc3033945.imfitplus.model.Gender
 import br.edu.ifsp.scl.ads.prdm.sc3033945.imfitplus.model.UserDTO
@@ -60,6 +61,7 @@ class DailyCaloriesActivity : AppCompatActivity() {
                 putExtra(EXTRA_IMC, imc)
                 putExtra(EXTRA_IMC_CATEGORY, category)
                 putExtra(EXTRA_DAILY_CALORY, dailyCalories)
+                putExtra(EXTRA_TMB, tmb)
                 startActivity(this)
             }
         }

@@ -6,4 +6,5 @@ object Constants {
     var EXTRA_IMC_CATEGORY = "IMC_CATEGORY"
     var EXTRA_WEIGHT= "EXTRA_WEIGHT"
     var EXTRA_DAILY_CALORY = "EXTRA_DAILY_CALORY"
+    var EXTRA_TMB = "EXTRA_TMB"
 }

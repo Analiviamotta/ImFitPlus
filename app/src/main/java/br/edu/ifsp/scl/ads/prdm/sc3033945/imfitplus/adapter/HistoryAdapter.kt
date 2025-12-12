@@ -26,7 +26,7 @@ class HistoryAdapter (
                         as LayoutInflater, parent, false
             ).apply {
                 historyTileView = root
-                val historyTileViewHolder = TileHistoryViewHolder(userNameTv, ageTv, weightTv,idealWeightTv, imcTv, categoryTv )
+                val historyTileViewHolder = TileHistoryViewHolder(userNameTv, ageTv, weightTv,idealWeightTv, imcTv, categoryTv, tmbTv )
                 historyTileView.tag = historyTileViewHolder
             }
         }
@@ -38,13 +38,14 @@ class HistoryAdapter (
         tileViewHolder.idealWeightTv.text = "Ideal: %.0f kg".format(historyItem.idealWeight)
         tileViewHolder.imcTv.text = "IMC: %.0f".format(historyItem.imc)
         tileViewHolder.categoryTv.text = "Categoria: ${historyItem.category.label}"
+        tileViewHolder.tmb.text = "TMB: %.0f".format(historyItem.tmb)
 
         return historyTileView
     }
 
     private data class TileHistoryViewHolder(val userNameTv: TextView, val ageTv: TextView, val
         weightTv: TextView, val idealWeightTv: TextView, val imcTv: TextView,
-                                             val categoryTv: TextView)
+                                             val categoryTv: TextView, val tmb: TextView)
 
 
 }

@@ -12,5 +12,6 @@ data class HistoryDTO(
     var userActivityLevel: ActivityLevel = ActivityLevel.Sedentary,
     var imc: Double = 0.0,
     var idealWeight: Double = 0.0,
-    var category: Category = Category.OVERWEIGHT
+    var category: Category = Category.OVERWEIGHT,
+    var tmb: Double = 0.0
 )
