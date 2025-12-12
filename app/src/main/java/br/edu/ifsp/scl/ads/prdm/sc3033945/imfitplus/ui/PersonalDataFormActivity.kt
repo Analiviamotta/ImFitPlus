@@ -13,6 +13,7 @@ import br.edu.ifsp.scl.ads.prdm.sc3033945.imfitplus.model.Constants.EXTRA_IMC
 import br.edu.ifsp.scl.ads.prdm.sc3033945.imfitplus.model.Constants.EXTRA_USER
 import br.edu.ifsp.scl.ads.prdm.sc3033945.imfitplus.model.Gender
 import br.edu.ifsp.scl.ads.prdm.sc3033945.imfitplus.model.UserDTO
+import java.time.LocalDate
 import java.time.LocalDateTime
 import java.util.UUID
 
@@ -171,6 +172,10 @@ class PersonalDataFormActivity : AppCompatActivity() {
                     else -> ActivityLevel.Sedentary
                 }
 
+                val dataNasc = apdfb.dataNascEt.text.toString()
+
+                val dataNascDate = LocalDate.parse(dataNasc)
+
                 var user = UserDTO(userId,
                     apdfb.ageEt.text.toString().toInt(),
                     apdfb.nameEt.text.toString(),
@@ -178,7 +183,8 @@ class PersonalDataFormActivity : AppCompatActivity() {
                     weight,
                     gender,
                     LocalDateTime.now(),
-                    activityLevel)
+                    activityLevel,
+                    dataNascDate)
 
 
                 val message = "Redirecionando para tela de IMC"

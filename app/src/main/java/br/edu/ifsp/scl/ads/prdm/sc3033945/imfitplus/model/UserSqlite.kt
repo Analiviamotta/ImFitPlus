@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteDatabase
 import android.util.Log
 import br.edu.ifsp.scl.ads.prdm.sc3033945.imfitplus.R
 import java.sql.SQLException
+import java.time.LocalDate
 import java.time.LocalDateTime
 
 class UserSqlite(context: Context): UserDao {
@@ -22,6 +23,7 @@ class UserSqlite(context: Context): UserDao {
         private val GENDER_COLUMN = "gender"
         private val CREATED_AT_COLUMN = "createdAt"
         private val ACTIVITY_LEVEL_COLUMN = "activityLevel"
+        private val DATA_NASC_COLUMN = "dataNasc"
 
         private val CREATE_USER_TABLE_STATEMENT = "CREATE TABLE IF NOT EXISTS $USER_TABLE (" +
                 "$ID_COLUMN TEXT PRIMARY KEY, " +
@@ -31,7 +33,8 @@ class UserSqlite(context: Context): UserDao {
                 "$WEIGHT_COLUMN REAL NOT NULL, " +
                 "$GENDER_COLUMN TEXT NOT NULL, " +
                 "$CREATED_AT_COLUMN TEXT NOT NULL, " +
-                "$ACTIVITY_LEVEL_COLUMN TEXT NOT NULL" +
+                "$ACTIVITY_LEVEL_COLUMN TEXT NOT NULL," +
+                "$DATA_NASC_COLUMN TEXT NOT NULL" +
                 ");"
     }
 
@@ -139,6 +142,7 @@ class UserSqlite(context: Context): UserDao {
         put(GENDER_COLUMN, gender.name)
         put(CREATED_AT_COLUMN, createdAt.toString())
         put(ACTIVITY_LEVEL_COLUMN, activityLevel.name)
+        put(DATA_NASC_COLUMN, birthDate.toString())
     }
 
     private fun Cursor.toUser() = UserDTO(
@@ -149,7 +153,8 @@ class UserSqlite(context: Context): UserDao {
         getDouble(getColumnIndexOrThrow(WEIGHT_COLUMN)),
         Gender.valueOf(getString(getColumnIndexOrThrow(GENDER_COLUMN))),
         LocalDateTime.parse(getString(getColumnIndexOrThrow(CREATED_AT_COLUMN))),
-        ActivityLevel.valueOf(getString(getColumnIndexOrThrow(ACTIVITY_LEVEL_COLUMN)))
+        ActivityLevel.valueOf(getString(getColumnIndexOrThrow(ACTIVITY_LEVEL_COLUMN))),
+        LocalDate.parse(getString(getColumnIndexOrThrow(DATA_NASC_COLUMN)))
     )
 
 }

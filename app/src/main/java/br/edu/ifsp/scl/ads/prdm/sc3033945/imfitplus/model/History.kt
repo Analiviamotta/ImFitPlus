@@ -13,5 +13,6 @@ data class HistoryDTO(
     var imc: Double = 0.0,
     var idealWeight: Double = 0.0,
     var category: Category = Category.OVERWEIGHT,
-    var tmb: Double = 0.0
+    var tmb: Double = 0.0,
+    var fmc: Int = 0
 )

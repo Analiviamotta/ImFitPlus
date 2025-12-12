@@ -103,6 +103,8 @@
                 android:paddingTop="8dp"
                 android:paddingBottom="4dp" />
 
+
+
             <EditText
                 android:id="@+id/ageEt"
                 android:autofillHints=""
@@ -111,6 +113,38 @@
                 android:enabled="false"
 
                 android:hint="@string/age_placeholder"
+
+                android:textColor="@color/black"
+
+                android:background="@android:drawable/edit_text"
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:layout_marginHorizontal="16dp" />
+
+            <TextView
+                android:id="@+id/dataNascTv"
+                android:text="Data de nascimento"
+                android:labelFor="@id/dataNascEt"
+
+                android:textColor="@color/black"
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:paddingHorizontal="16dp"
+                android:paddingTop="8dp"
+                android:paddingBottom="4dp" />
+
+            <EditText
+                android:id="@+id/dataNascEt"
+                android:autofillHints=""
+                android:inputType="number"
+
+                android:enabled="false"
+
+                android:hint="aaaa-mm-dd"
 
                 android:textColor="@color/black"
 

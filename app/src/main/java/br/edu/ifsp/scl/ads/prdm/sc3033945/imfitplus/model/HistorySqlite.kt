@@ -26,6 +26,7 @@ class HistorySqlite(context: Context): HistoryDAO {
         private const val IDEAL_WEIGHT_COLUMN = "idealWeight"
         private const val CATEGORY_COLUMN = "category"
         private const val TMB_COLUMN = "tmb"
+        private const val FCMAX_COLUMN = "fcmax"
 
         private val CREATE_HISTORY_TABLE_STATEMENT =
             "CREATE TABLE IF NOT EXISTS $HISTORY_TABLE (" +
@@ -40,6 +41,7 @@ class HistorySqlite(context: Context): HistoryDAO {
                     "$IDEAL_WEIGHT_COLUMN REAL NOT NULL, " +
                     "$CATEGORY_COLUMN TEXT NOT NULL, " +
                     "$TMB_COLUMN REAL NOT NULL, " +
+                    "$FCMAX_COLUMN REAL NOT NULL, " +
                     "FOREIGN KEY ($USER_ID_COLUMN) REFERENCES user(id) " +
                     "ON DELETE CASCADE" +
                     ");"
@@ -135,6 +137,7 @@ class HistorySqlite(context: Context): HistoryDAO {
         put(IDEAL_WEIGHT_COLUMN, idealWeight)
         put(CATEGORY_COLUMN, category.name)
         put(TMB_COLUMN, tmb)
+        put(FCMAX_COLUMN, fmc)
     }
 
     private fun Cursor.toHistory() = HistoryDTO(
@@ -150,6 +153,7 @@ class HistorySqlite(context: Context): HistoryDAO {
          getDouble(getColumnIndexOrThrow(IMC_COLUMN)),
          getDouble(getColumnIndexOrThrow(IDEAL_WEIGHT_COLUMN)),
          Category.valueOf(getString(getColumnIndexOrThrow(CATEGORY_COLUMN))),
-        getDouble(getColumnIndexOrThrow(TMB_COLUMN))
+        getDouble(getColumnIndexOrThrow(TMB_COLUMN)),
+        getInt(getColumnIndexOrThrow(FCMAX_COLUMN))
     )
 }

@@ -20,7 +20,9 @@ import br.edu.ifsp.scl.ads.prdm.sc3033945.imfitplus.model.Constants.EXTRA_USER
 import br.edu.ifsp.scl.ads.prdm.sc3033945.imfitplus.model.Constants.EXTRA_WEIGHT
 import br.edu.ifsp.scl.ads.prdm.sc3033945.imfitplus.model.HistoryDTO
 import br.edu.ifsp.scl.ads.prdm.sc3033945.imfitplus.model.UserDTO
+import java.time.LocalDate
 import java.time.LocalDateTime
+import java.time.Period
 import java.util.UUID
 
 class Resume : AppCompatActivity() {
@@ -37,6 +39,11 @@ class Resume : AppCompatActivity() {
 
         setContentView(ar.root)
 
+        fun calculateAge(birthDate: LocalDate): Int{
+            val currentDate = LocalDate.now()
+            return Period.between(birthDate, currentDate).years
+        }
+
         val user = if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU){
             intent.getParcelableExtra(EXTRA_USER, UserDTO::class.java)
         }else {
@@ -52,16 +59,31 @@ class Resume : AppCompatActivity() {
             it.label == category
         } ?: Category.NORMAL
 
+        var fcmax = 0
         if (user == null) {
             Toast.makeText(this, "Usuário não encontrado", Toast.LENGTH_SHORT).show()
         }else {
-
+            val age = calculateAge(user.birthDate)
             val water = (user.weight * 100) * 350
+            fcmax = 220 - age
+            val zonaLeveMin = fcmax * 0.5
+            val zonaLeveMax = fcmax * 0.6
+            val zonaQueimaMax = fcmax * 0.7
+            val zonaAerobicaMax = fcmax * 0.8
+            val zonaAnaerobicaMax = fcmax * 0.9
 
             ar.nameTv.text = String.format("Nome: %s", user.name)
             ar.imcResultTv.text = String.format("IMC: %.2f", imc)
             ar.categoryTv.text = String.format("Categoria do IMC: %s", category)
             ar.idealWeightTv.text = String.format("Peso Ideal: %.2f", weight)
+
+
+            ar.fcMaxTv.text = String.format("FCMAX %0f", fcmax )
+            ar.zonaLeveTv.text = String.format("Zona Leve: %0f, %0f", zonaLeveMin, zonaLeveMax)
+            ar.zonaQuimaTv.text = String.format("Zona Queima de Gordura: %0f, %0f", zonaLeveMax - zonaQueimaMax)
+            ar.zonaAerobicaTv.text = String.format("Zona Anaerobica: %0f, %0f", zonaQueimaMax , zonaAerobicaMax)
+            ar.zonaAnaerobicaTv.text = String.format("Zona Anaerobica: %0f, %0f", zonaAerobicaMax , zonaAnaerobicaMax)
+
             ar.dailyCaloriesResultTv.text = String.format("Gasto Calórico Diario: %.2f", dailyCalories)
             ar.waterTv.text = String.format("Recomendaçao de consumo de agua em ml: %.2f", water)
         }
@@ -90,7 +112,8 @@ class Resume : AppCompatActivity() {
                     imc,
                     weight,
                     categoryEnum,
-                    tmb
+                    tmb,
+                    fcmax
                 )
 
                 resumeController.addHistory(history)
@@ -101,5 +124,7 @@ class Resume : AppCompatActivity() {
                 }
             }.start()
         }
+
+
     }
 }

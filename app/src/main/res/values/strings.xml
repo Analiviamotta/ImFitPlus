@@ -46,4 +46,5 @@
     <string name="save_bt_label">Salvar Informacoes e visualizar historico</string>
     <string name="history_button_label">Visualizar histórico</string>
     <string name="return_to_init_screen">Voltar para o inicio</string>
+    <string name="frequ_ncia_maxima_cardiaca_s">Frequência maxima cardiaca: %s</string>
 </resources>

@@ -114,6 +114,77 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAlignment="textStart" />
+
+        <TextView
+            android:id="@+id/fcMaxTv"
+
+            android:text="@string/frequ_ncia_maxima_cardiaca_s"
+
+            android:fontFamily="sans-serif-condensed"
+
+            android:padding="16dp"
+            android:textSize="20sp"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="textStart" />
+
+        <TextView
+            android:id="@+id/zonaLeveTv"
+
+            android:text="zona Leve"
+
+
+            android:fontFamily="sans-serif-condensed"
+
+            android:padding="16dp"
+            android:textSize="20sp"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="textStart" />
+
+        <TextView
+            android:id="@+id/zonaQuimaTv"
+            android:text="zona de queima de gordura"
+
+
+            android:fontFamily="sans-serif-condensed"
+
+            android:padding="16dp"
+            android:textSize="20sp"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="textStart" />
+
+        <TextView
+            android:id="@+id/zonaAerobicaTv"
+            android:text="zona Aerobica"
+
+
+            android:fontFamily="sans-serif-condensed"
+
+            android:padding="16dp"
+            android:textSize="20sp"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="textStart" />
+
+        <TextView
+            android:id="@+id/zonaAnaerobicaTv"
+            android:text="zona Anaerobica"
+
+
+            android:fontFamily="sans-serif-condensed"
+
+            android:padding="16dp"
+            android:textSize="20sp"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="textStart" />
     </LinearLayout>
 
     <Button
